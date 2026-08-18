@@ -2,6 +2,8 @@
 
 An open-source, local-first teleprompter and video recorder that runs in your browser.
 
+**[Open LocalCue Studio](https://localcue-studio.piyushfulper3210.chatgpt.site)**
+
 Paste or import a script, place it close to the camera, record a take, review it immediately, and download the actual file produced by your browser. No account is required.
 
 ## Why this exists
