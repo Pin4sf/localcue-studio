@@ -70,6 +70,7 @@ export function LocalCueStudio() {
   const voiceWatchdog = useRef<ReturnType<typeof setTimeout> | null>(null);
   const takeUrlRef = useRef("");
   const cursorRef = useRef(0);
+  const recordingRef = useRef(false);
 
   const promptTokens = useMemo(() => script.split(/(\s+)/).filter(Boolean), [script]);
   const wordCount = useMemo(() => script.trim().split(/\s+/).filter(Boolean).length, [script]);
@@ -233,7 +234,7 @@ export function LocalCueStudio() {
       }
     };
     engine.onend = () => {
-      if (recognition.current === engine && recording) {
+      if (recognition.current === engine && recordingRef.current) {
         try { engine.start(); } catch { setVoiceActive(false); }
       }
     };
@@ -289,6 +290,7 @@ export function LocalCueStudio() {
     };
     recorder.current = nextRecorder;
     nextRecorder.start(1000);
+    recordingRef.current = true;
     setElapsed(0);
     setRecording(true);
     timer.current = setInterval(() => setElapsed((value) => value + 1), 1000);
@@ -298,6 +300,7 @@ export function LocalCueStudio() {
 
   function stopRecording() {
     if (recorder.current?.state !== "inactive") recorder.current?.stop();
+    recordingRef.current = false;
     if (timer.current) clearInterval(timer.current);
     timer.current = null;
     setRecording(false);
