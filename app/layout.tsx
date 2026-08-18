@@ -8,11 +8,10 @@ const geistMono = Geist_Mono({ variable: "--font-mono", subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "LocalCue Studio",
   description: "A local-first voice-following teleprompter and video recorder.",
-  metadataBase: new URL("https://localcue-studio.openai.site"),
   openGraph: {
     title: "LocalCue Studio",
     description: "Read near the lens. Keep your take local.",
-    images: ["/og.png"],
+    images: ["https://raw.githubusercontent.com/Pin4sf/localcue-studio/main/public/og.png"],
   },
 };
 
